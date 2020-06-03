@@ -1,0 +1,123 @@
+<div class="modal-header bg-danger">
+    <h4 class="modal-title"> {{infoVehicle.name}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="dismiss()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body" appLoadingCenter #modalbody="drLoadingCenter">
+    <div class="info">
+        <div class="key">
+            Name:
+        </div>
+        <div class="value">
+            {{infoVehicle?.name}}
+        </div>
+    </div>
+    <div class="info">
+        <div class="key">
+            Cargo capacity :
+        </div>
+        <div class="value">
+            {{infoVehicle?.cargo_capacity}}
+        </div>
+    </div>
+    <div class="info">
+        <div class="key">
+            consumables :
+        </div>
+        <div class="value">
+            {{infoVehicle?.consumables}}
+        </div>
+    </div>
+    <div class="info">
+        <div class="key">
+            Cost in credits :
+        </div>
+        <div class="value">
+            {{infoVehicle?.cost_in_credits}}
+        </div>
+    </div>
+    <div class="info">
+        <div class="key">
+            Created :
+        </div>
+        <div class="value">
+            {{infoVehicle?.created | date : 'M/d/yy, h:mm a'  }}
+        </div>
+    </div>
+    <div class="info">
+        <div class="key">
+            crew :
+        </div>
+        <div class="value">
+            {{infoVehicle?.crew}}
+        </div>
+    </div>
+    <div class="info">
+        <div class="key">
+            Edited :
+        </div>
+        <div class="value">
+            {{infoVehicle?.edited | date : 'M/d/yy, h:mm a'  }}
+        </div>
+    </div>
+    <div class="info">
+        <div class="key">
+            Length :
+        </div>
+        <div class="value">
+            {{infoVehicle?.length}}
+        </div>
+    </div>
+    <div class="info">
+        <div class="key">
+            Manufacturer :
+        </div>
+        <div class="value">
+            {{infoVehicle?.manufacturer}}
+        </div>
+    </div>
+    <div class="info">
+        <div class="key">
+            Cargo capacity :
+        </div>
+        <div class="value">
+            {{infoVehicle?.cargo_capacity}}
+        </div>
+    </div>
+    <div class="info">
+        <div class="key">
+            Max atmosphering speed :
+        </div>
+        <div class="value">
+            {{infoVehicle?.max_atmosphering_speed}}
+        </div>
+    </div>
+    <div class="info">
+        <div class="key">
+            Model :
+        </div>
+        <div class="value">
+            {{infoVehicle?.model}}
+        </div>
+    </div>
+    <div class="info">
+        <div class="key">
+            Passengers :
+        </div>
+        <div class="value">
+            {{infoVehicle?.passengers}}
+        </div>
+    </div>
+    <div class="info">
+        <div class="key">
+            Vehicle_class :
+        </div>
+        <div class="value">
+            {{infoVehicle?.vehicle_class}}
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="close()">Close</button>
+</div>

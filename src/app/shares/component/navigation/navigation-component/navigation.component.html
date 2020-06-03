@@ -1,0 +1,21 @@
+<div *ngIf="listRouterActive.length > 0" class="navigation bg-danger">
+    <ng-container *ngFor="let itemNavigation of listRouterActive ; last as last; trackBy: trackByFn">
+
+        <a *ngIf="itemNavigation.path  ; else noRedirect" class="item-navigation" [routerLink]="[itemNavigation.path]">
+            <span *ngIf="itemNavigation.icon" class="icon">
+                <i class="{{itemNavigation.icon}}" aria-hidden="true"></i>
+            </span>
+            {{itemNavigation.title}}
+            <span *ngIf="!last"> > </span>
+        </a>
+        <ng-template #noRedirect>
+            <a class="item-navigation">
+                <span *ngIf="itemNavigation.icon" class="icon">
+                    <i class="{{itemNavigation.icon}}" aria-hidden="true"></i>
+                </span>
+                {{itemNavigation.title}}
+                <span *ngIf="!last"> > </span>
+            </a>
+        </ng-template>
+    </ng-container>
+</div>
