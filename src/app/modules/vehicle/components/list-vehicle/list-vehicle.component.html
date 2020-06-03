@@ -1,0 +1,59 @@
+<div class="content-block-default">
+    <div class="title">
+        List Vehicle
+    </div>
+    <div class="body-block">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <input class="form-control search" [(ngModel)]="valueSearch" (ngModelChange)="changeValueSearch($event)"
+                    placeholder="Search name ...">
+            </div>
+        </div>
+        <div class="table" appLoadingCenter #table="drLoadingCenter">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Model</th>
+                        <th>Manufacturer</th>
+                        <th>Cost in credits</th>
+                        <th>Length</th>
+                        <th>Speed</th>
+                        <th>Crew</th>
+                        <th>Passengers</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let itemNVehicles of infoListVehicles.results ; trackBy: trackByFn">
+                        <tr>
+                            <td>{{itemNVehicles.name}}</td>
+                            <td>{{itemNVehicles.model}}</td>
+                            <td>{{itemNVehicles.manufacturer}}</td>
+                            <td>{{itemNVehicles.cost_in_credits}}</td>
+                            <td>{{itemNVehicles.length}}</td>
+                            <td>{{itemNVehicles.max_atmosphering_speed}}</td>
+                            <td>{{itemNVehicles.crew}}</td>
+                            <td>{{itemNVehicles.passengers}}</td>
+                            <td>
+                                <div class="item-action" title="Detail" (click)=toDetaiVechicle(itemNVehicles.url)>
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+            <div class="page-redirect">
+                <div title="Previous page" class="item" [ngClass]="{'disable': infoListVehicles.previous == null }"
+                    (click)=changePage(infoListVehicles.previous)>
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                </div>
+                <div title="Next page" class="item" [ngClass]="{'disable': infoListVehicles.next == null }"
+                    (click)=changePage(infoListVehicles.next)>
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
