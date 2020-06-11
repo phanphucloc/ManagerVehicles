@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { VehicleService } from '../../service/vehicle.service';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { IVehicleModel, IItemVehicleModel } from '../../abstract/IItemVehicleModel';
 import { VehicleModel } from '../../model/ItemVehicleModel';
 import { Subject } from 'rxjs';
@@ -53,13 +53,17 @@ export class ListVehicleComponent implements OnInit {
 
   //Get all event in view
   getEvent(): void {
-
     //Get event change value search
     this.ObValueSearch.pipe(
       debounceTime(500),
-      distinctUntilChanged()
+      distinctUntilChanged(),
+      switchMap((value) => {
+        this.elTable.showloadingCenter();
+        return this.vehicleService.searchItemVehiclesByName(value)
+      })
     ).subscribe(result => {
       this.searchVechicleByName(result);
+      this.elTable.hideloadingCenter();
     })
     //---------
 
@@ -132,18 +136,8 @@ export class ListVehicleComponent implements OnInit {
   }
 
   //Get list vechicle by name
-  searchVechicleByName(name: String): void {
-
-    this.elTable.showloadingCenter();
-    this.vehicleService.searchItemVehiclesByName(name)
-      .subscribe((result: IVehicleModel) => {
-        console.log(result)
-        this.infoListVehicles = result;
-        this.elTable.hideloadingCenter();
-      }, (err) => {
-        this.elTable.hideloadingCenter();
-      });
-
+  searchVechicleByName(vehicleData: IVehicleModel): void {
+    this.infoListVehicles = vehicleData;
   }
 
   trackByFn(index: Number, item: any): Number {
